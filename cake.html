@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Birthday Cake</title>
+    <link rel="stylesheet" href="./cake.css">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap'); </style>
+</head>
+<body>
+
+    <h1 style="font-family: 'Limelight', cursive; font-size: 40px; color: #2F1042;">¡Feliz Cumpleaños, Mariana! 🎂</h1>
+    <p id="instruction"> Sopla las velas y pide un deseo</p>
+
+    <div class="cake-container" id="cake">
+        <!-- Candles Grid -->
+        <div class="candles">
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+        </div>
+        
+        <!-- The Cake Structure -->
+        <div class="cake-layer">
+            <div class="icing"></div>
+        </div>
+        <div class="plate"></div>
+    </div>
+
+    <script>
+        const candles = document.querySelectorAll('.candle');
+        const instruction = document.getElementById('instruction');
+        const cake = document.getElementById('cake');
+
+        // Control para que el cambio de botón ocurra una sola vez
+        let candlesBlown = false;
+
+        // Initialize audio stream on user interaction to comply with browser safety rules
+        window.addEventListener('mouseenter', initMicrophone, { once: true });
+        window.addEventListener('click', initMicrophone, { once: true });
+
+        // ==========================================
+        // 1. FUNCIÓN COMPARTIDA PARA APAGAR LAS VELAS
+        // ==========================================
+        function extinguishCandles() {
+            if (candlesBlown) return; // Si ya se apagaron, no hace nada mas
+            candlesBlown = true; 
+            
+            // Apaga las velas
+            candles.forEach(candle => candle.classList.add('blown-out'));
+            
+            // Crea el nuevo elemento botón
+            const wishButton = document.createElement('button');
+            
+            // Le asignamos propiedades conservando los textos y enlaces de tu archivo original
+            wishButton.id = 'instruction';
+            wishButton.textContent = "¡Observa tu sorpresa de cumpleaños! 🎉";
+            
+            wishButton.addEventListener('click', () => {
+                setTimeout(() => {
+                    window.location.href = "./gallery/gallery.html"; 
+                }, 1000);
+            });
+
+            // Reemplazamos el viejo párrafo (<p>) por el nuevo botón (<button>)
+            instruction.parentNode.replaceChild(wishButton, instruction);
+        }
+
+        // ==========================================
+        // 2. MÉTODO DE RESPALDO: DOBLE CLICK EN EL PASTEL
+        // ==========================================
+        cake.addEventListener('dblclick', extinguishCandles);
+
+        // ==========================================
+        // 3. MÉTODO PRINCIPAL: MICRÓFONO
+        // ==========================================
+        async function initMicrophone() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const analyser = audioContext.createAnalyser();
+                const microphone = audioContext.createMediaStreamSource(stream);
+                
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+                
+                microphone.connect(analyser);
+
+                function checkBlow() {
+                    analyser.getByteFrequencyData(dataArray);
+                    
+                    // Calculate overall volume level
+                    let sum = 0;
+                    for (let i = 0; i < bufferLength; i++) {
+                        sum += dataArray[i];
+                    }
+                    let averageVolume = sum / bufferLength;
+
+                    // Si el volumen pasa el umbral, apaga las velas con la función compartida
+                    if (averageVolume > 55 && !candlesBlown) { 
+                        extinguishCandles();
+                    }
+
+                    // Loop frame analysis infinitely
+                    requestAnimationFrame(checkBlow);
+                }
+
+                checkBlow();
+
+            } catch (err) {
+                console.log("Microphone access denied or unsupported. Using dblclick backup.", err);
+            }
+        }
+    </script>
+</body>
+</html>

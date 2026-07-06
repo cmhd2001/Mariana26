@@ -1,0 +1,146 @@
+body {
+    background: #fdf7ff;
+background: radial-gradient(circle,rgba(253, 247, 255, 1) 0%, rgba(196, 91, 252, 1) 100%, rgba(233, 208, 247, 1) 50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+h1 {
+    color: #d15a7a;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #6e635d;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+/* Cake Container */
+.cake-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+
+/* Cake Base Plate */
+.plate {
+    position: absolute;
+    bottom: 0;
+    width: 270px;
+    height: 15px;
+    background-color: #dfdfdf;
+    border-radius: 10px;
+    left: -10px;
+}
+
+/* Cake Layer */
+.cake-layer {
+    position: absolute;
+    bottom: 15px;
+    width: 250px;
+    height: 120px;
+    background-color: #f19fb3;
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 0 -15px 0 #e4829b;
+}
+
+/* Icing Drips */
+.icing {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 30px;
+    background-color: #ffffff;
+    border-radius: 10px 10px 15px 15px;
+}
+
+/* Candles Container */
+.candles {
+    position: absolute;
+    top: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+/* Candle Structure */
+.candle {
+    position: relative;
+    width: 12px;
+    height: 50px;
+    background: linear-gradient(to right, #6bbdf4, #a4dbff);
+    border-radius: 3px 3px 0 0;
+}
+
+/* Candle Wick */
+.candle::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    width: 2px;
+    height: 8px;
+    background-color: #333;
+}
+
+/* Candle Flame (CSS Animation) */
+.flame {
+    position: absolute;
+    top: -23px;
+    left: 1px;
+    width: 10px;
+    height: 16px;
+    background-color: #ff9800;
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
+    animation: flicker 0.6s infinite alternate;
+    transform-origin: bottom center;
+    transition: opacity 0.4s ease-out;
+}
+
+/* Flame Flickering Keyframes */
+@keyframes flicker {
+    0% { transform: scale(1) rotate(-2deg); }
+    100% { transform: scale(1.1) rotate(2deg); opacity: 0.9; }
+}
+
+/* Blown Out Class */
+.candle.blown-out .flame {
+    opacity: 0;
+    animation: none;
+    pointer-events: none;
+}
+
+/* Esto afectará tanto al texto inicial como al botón cuando aparezca */
+#instruction {
+    font-family: sans-serif;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Estilos exclusivos para cuando se convierta en botón */
+button#instruction {
+    background-color: #2F1042; /* El mismo color morado de tu título */
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(47, 16, 66, 0.3);
+    transition: transform 0.2s ease;
+}
+
+button#instruction:hover {
+    transform: scale(1.05); /* Pequeño efecto de agrandado al pasar el cursor */
+}

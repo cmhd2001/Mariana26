@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Galería || Cumple 26</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./gallery.css">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap'); </style>
+</head>
+<body>
+    <h1 style="font-family: 'Limelight', cursive; text-align: center; color: #2f1042; font-size: 70px"> ¡Feliz Cumple 26!</h1>
+
+    <section class="swiper-container">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="../images/1.jfif" alt="mariana chikita">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../images/2.jfif" alt="mariana orange">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../images/3.jfif" alt="mariana artsy">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../images/4.jfif" alt="mariana cumple">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../images/5.jpeg" alt="mariana fiesta">
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+            
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 1, 
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 2.5,
+                slideShadows: false
+            },
+            direction: 'horizontal',
+            loop: true,
+
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            keyboard: {
+                enabled: true
+            },
+
+            mousewheel: {
+                thresholdDelta: 70
+            },
+
+            breakpoints: {
+                560: {
+                    slidesPerView: 1.5
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+</body>
+</html>
