@@ -13,8 +13,8 @@ body{
 
 .swiper {
     width: 100%;
-    max-width: 800px;
-    height: 450px;
+    max-width: 1200px;
+    height: 500px;
     border-radius: 8px;
     position: relative; /* Asegura el correcto comportamiento interno */
 }
@@ -28,6 +28,7 @@ body{
 
 .swiper-button-next, .swiper-button-prev {
     color: #fff;
+    padding: 5px;
 }
 
 .swiper-pagination-bullet-active {

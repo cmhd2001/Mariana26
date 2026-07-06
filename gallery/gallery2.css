@@ -2,25 +2,19 @@ body{
     background: #fdf7ff;
     background: radial-gradient(circle,rgba(253, 247, 255, 1) 0%, rgba(196, 91, 252, 1) 100%, rgba(233, 208, 247, 1) 50%);
     margin: 0;
-    padding: 0;
+    padding: 10px 10px;
 }
-
-h1 {
-    margin: 0;
-    text-align: center;       
-}
-
 .swiper-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 0;
+    padding: 10px 10px;
 }
 
 .swiper {
     width: 100%;
     max-width: 800px;
-    height: 450px;
+    height: 450;
     border-radius: 8px;
     position: relative; /* Asegura el correcto comportamiento interno */
 }
@@ -34,6 +28,7 @@ h1 {
 
 .swiper-button-next, .swiper-button-prev {
     color: #fff;
+    padding: 5px;
 }
 
 .swiper-pagination-bullet-active {
@@ -49,7 +44,7 @@ h1 {
   width: 280px;
   height: 420px;
   perspective: 1000px;
-  margin: 50px auto;
+  margin: 10px auto;
 }
 
 .flip-card-inner {
