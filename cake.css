@@ -121,7 +121,7 @@ p {
 }
 
 /* Esto afectará tanto al texto inicial como al botón cuando aparezca */
-#instruction {
+#wish {
     font-family: sans-serif;
     font-size: 18px;
     text-align: center;
@@ -130,7 +130,7 @@ p {
 }
 
 /* Estilos exclusivos para cuando se convierta en botón */
-button#instruction {
+button#wish {
     background-color: #2F1042; /* El mismo color morado de tu título */
     color: #ffffff;
     border: none;

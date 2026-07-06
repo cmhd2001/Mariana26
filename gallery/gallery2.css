@@ -1,9 +1,9 @@
 body{
-    background: #fdf7ff;
-    background: radial-gradient(circle,rgba(253, 247, 255, 1) 0%, rgba(196, 91, 252, 1) 100%, rgba(233, 208, 247, 1) 50%);
-    margin: 0;
-    padding: 10px 10px;
+    background: #CC73FC;
+    background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
+    padding: 0;
 }
+
 .swiper-container {
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@ body{
 
 .swiper {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     height: 450;
     border-radius: 8px;
     position: relative; /* Asegura el correcto comportamiento interno */

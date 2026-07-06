@@ -12,6 +12,7 @@
 
     <h1 style="font-family: 'Limelight', cursive; font-size: 40px; color: #2F1042;">¡Feliz Cumpleaños, Mariana! 🎂</h1>
     <p id="instruction"> Sopla las velas y pide un deseo</p>
+    <p id="wish"></p>
 
     <div class="cake-container" id="cake">
         <!-- Candles Grid -->
@@ -31,6 +32,7 @@
     <script>
         const candles = document.querySelectorAll('.candle');
         const instruction = document.getElementById('instruction');
+        const wish = document.getElementById('wish');
         const cake = document.getElementById('cake');
 
         // Control para que el cambio de botón ocurra una sola vez
@@ -52,19 +54,24 @@
             
             // Crea el nuevo elemento botón
             const wishButton = document.createElement('button');
+            const newMessage = document.createElement('p')
             
             // Le asignamos propiedades conservando los textos y enlaces de tu archivo original
-            wishButton.id = 'instruction';
-            wishButton.textContent = "¡Observa tu sorpresa de cumpleaños! 🎉";
+            wishButton.id = 'wish';
+            wishButton.textContent = "¡Abre tu sorpresa de cumpleaños! 🎉";
+
+            newMessage.id = 'instruction';
+            newMessage.textContent = "Que todos tus sueños y metas se hagan realidad en este nuevo año de vida ❤️💫";
             
             wishButton.addEventListener('click', () => {
                 setTimeout(() => {
-                    window.location.href = "./gallery/gallery.html"; 
+                    window.location.href = "./gallery/gallery2.html"; 
                 }, 1000);
             });
 
             // Reemplazamos el viejo párrafo (<p>) por el nuevo botón (<button>)
-            instruction.parentNode.replaceChild(wishButton, instruction);
+            wish.parentNode.replaceChild(wishButton, wish);
+            instruction.parentNode.replaceChild(newMessage, instruction)
         }
 
         // ==========================================
