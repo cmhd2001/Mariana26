@@ -1,269 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title> Mariana Cumple 26 🎈 </title>
-        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-        <link rel="stylesheet" href="./carousel.css">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
-        </style>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Galería de Momentos</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="./carousel.css">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap'); </style>
+</head>
+<body class="is-loading">
+    
+    <script>
+        window.addEventListener('load', () => {
+            document.body.classList.remove('is-loading');
+        });
+    </script>
+    
+    <div class="content-wrapper">
+        
+        <h1 style="font-family: 'Limelight', cursive; text-align: center; color: #F8EBFE; font-size: 55px; margin-top: 20px;">Galería de Momentos 🌟</h1>
+
+        <div class="carousel-container-wrapper">
             
-        <h1 style="font-family: 'Limelight', cursive; font-size: 50px; margin-top: 20px;">¡Feliz Cumpleaños 26, Mariana!</h1>
+            <button class="custom-carousel-btn" type="button" id="prevBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
 
-        <div class="carousel-container">
-            <button class="nav-btn prev-btn" aria-label="Anterior">‹</button>
-
-            <div class="carousel-track-wrapper">
+            <div id="customMomentsCarousel" class="carousel-view">
                 <div class="carousel-track">
                     
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/1.jfif" alt="Mariana chikita">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
+                    <div class="carousel-slide-item">
+                        <div class="carousel-media-box">
+                            <img src="../images/16.png" alt="Mariana y Ana comiendo asquerositos">
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide-item">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1oIb1rQ8UBVKsOmzhSiz-_aAK8V_aGh0X/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                     </div>
 
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/2.jfif" alt="Mariana Orange">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
+                    <div class="carousel-slide-item">
+                        <div class="carousel-media-box">
+                            <img src="../images/13.JPG" alt="Mariana surfista">
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-slide-item">
+                        <div class="carousel-media-box">
+                            <img src="../images/8.jpeg" alt="Mariana y Carmen Secret Santa">
                         </div>
                     </div>
 
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/3.jfif" alt="Mariana Artsy">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/4.jfif" alt="Mariana Cumple">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/5.jpeg" alt="mariana fiesta">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/1.jfif" alt="Mariana chikita">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/2.jfif" alt="Mariana Orange">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/3.jfif" alt="Mariana Artsy">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/4.jfif" alt="Mariana Cumple">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <div class="flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    <img src="../images/5.jpeg" alt="mariana fiesta">
-                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                                </div>
-                                <div class="flip-card-back">
-                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                                </div>
-                            </div>
+                    <div class="carousel-slide-item">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO_2/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <button class="nav-btn next-btn" aria-label="Siguiente">›</button>
+            <button class="custom-carousel-btn" type="button" id="nextBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            
         </div>
 
+        <button id="back-to-gallery"> Revive tus felicitaciones </button>
+
         <script>
-            const track = document.querySelector('.carousel-track');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
+            const carouselTrack = document.querySelector('.carousel-track');
+            const carouselView = document.querySelector('.carousel-view');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const backButton = document.getElementById('back-to-gallery');
 
-            // Parámetros matemáticos: 280px (tarjeta) + 30px (gap) = 310px por paso.
-            const step = 310; 
-            const totalOriginalSlides = 5;
-            const maxOffset = totalOriginalSlides * step; // 1550px
-
-            // Empezamos en la posición 0 (viendo el Bloque 1)
-            let currentX = 0; 
-            let isMoving = false;
-
-            function moveCarousel(direction) {
-                if (isMoving) return;
-                isMoving = true;
-
-                // Activamos transiciones suaves para el movimiento normal
-                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-
-                if (direction === 'next') {
-                    currentX -= step;
-                    track.style.transform = `translateX(${currentX}px)`;
-
-                    // Si pasamos la última tarjeta del Bloque 1, hacemos el reset invisible al terminar la animación
-                    if (Math.abs(currentX) >= maxOffset) {
-                        setTimeout(() => {
-                            track.style.transition = 'none'; // Apagamos la animación
-                            currentX = 0; // Regresamos al inicio idéntico del Bloque 1
-                            track.style.transform = `translateX(${currentX}px)`;
-                            isMoving = false;
-                        }, 500); // 500ms coincide exactamente con el tiempo del CSS transition
-                    } else {
-                        setTimeout(() => { isMoving = false; }, 500);
-                    }
-                } 
-                else if (direction === 'prev') {
-                    // Si estamos en el inicio exacto (0) y queremos ir atrás, saltamos primero instantáneamente al Bloque 2
-                    if (currentX === 0) {
-                        track.style.transition = 'none';
-                        currentX = -maxOffset;
-                        track.style.transform = `translateX(${currentX}px)`;
-                        track.offsetHeight; // Forzar al navegador a procesar el salto sin animación
-                        
-                        // Ahora sí aplicamos la animación hacia atrás de forma fluida
-                        setTimeout(() => {
-                            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                            currentX += step;
-                            track.style.transform = `translateX(${currentX}px)`;
-                            setTimeout(() => { isMoving = false; }, 500);
-                        }, 20);
-                    } else {
-                        currentX += step;
-                        track.style.transform = `translateX(${currentX}px)`;
-                        setTimeout(() => { isMoving = false; }, 500);
-                    }
-                }
-            }
-
-            // Listeners de los botones
-            nextBtn.addEventListener('click', () => moveCarousel('next'));
-            prevBtn.addEventListener('click', () => moveCarousel('prev'));
-
-            // Soporte para flechas del teclado
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') moveCarousel('next');
-                if (e.key === 'ArrowLeft') moveCarousel('prev');
+            // 1. Clonación dinámica para crear el bucle infinito sin picar código de más
+            const originalItems = Array.from(carouselTrack.children);
+            
+            // Clonamos los ítems al final e inicio para crear la ilusión de infinito
+            originalItems.forEach(item => {
+                let cloneAfter = item.cloneNode(true);
+                carouselTrack.appendChild(cloneAfter);
+            });
+            originalItems.reverse().forEach(item => {
+                let cloneBefore = item.cloneNode(true);
+                carouselTrack.insertBefore(cloneBefore, carouselTrack.firstChild);
             });
 
-            // Manejo de clicks exclusivo para voltear las tarjetas (Flip)
-            track.addEventListener('click', (e) => {
-                const backButton = e.target.closest('.back-flip-btn');
-                if (backButton) {
-                    e.stopPropagation();
-                    const cardInner = backButton.closest('.flip-card-inner');
-                    if (cardInner) {
-                        cardInner.classList.remove('is-flipped');
-                    }
-                    return;
-                }
+            // 2. Posicionamiento Inicial (Saltamos los clones del principio)
+            const gap = 25; 
+            const itemWidth = originalItems[0].offsetWidth + gap;
+            const initialOffset = itemWidth * originalItems.length;
+            
+            carouselView.scrollLeft = initialOffset;
 
-                const cardInner = e.target.closest('.flip-card-inner');
-                if (cardInner && !cardInner.classList.contains('is-flipped')) {
-                    cardInner.classList.add('is-flipped');
+            // Activamos scroll suave solo después de posicionarlo
+            setTimeout(() => {
+                carouselView.classList.add('smooth-scroll');
+            }, 50);
+
+            // 3. Control de los Botones (Avanzar / Retroceder de uno en uno)
+            nextBtn.addEventListener('click', () => {
+                carouselView.scrollLeft += itemWidth;
+            });
+
+            prevBtn.addEventListener('click', () => {
+                carouselView.scrollLeft -= itemWidth;
+            });
+
+            // 4. Reset del Bucle Infinito Invisible
+            carouselView.addEventListener('scroll', () => {
+                const currentScroll = carouselView.scrollLeft;
+                const maxScroll = carouselTrack.scrollWidth - carouselView.clientWidth;
+
+                // Si se desplaza demasiado a la derecha (hacia los clones del final)
+                if (currentScroll >= maxScroll - 5) {
+                    carouselView.classList.remove('smooth-scroll');
+                    carouselView.scrollLeft = initialOffset;
+                    carouselView.offsetHeight; // Forzar reflow
+                    carouselView.classList.add('smooth-scroll');
                 }
+                
+                // Si se desplaza demasiado a la izquierda (hacia los clones del principio)
+                if (currentScroll <= 5) {
+                    carouselView.classList.remove('smooth-scroll');
+                    carouselView.scrollLeft = maxScroll - initialOffset;
+                    carouselView.offsetHeight; // Forzar reflow
+                    carouselView.classList.add('smooth-scroll');
+                }
+            });
+
+            // Transición de salida
+            backButton.addEventListener('click', () => {
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = "../gallery/gallery2.html"; 
+                }, 1000);
             });
         </script>
-    </body>
+    </div>
+</body>
 </html>

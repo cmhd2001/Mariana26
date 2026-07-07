@@ -148,6 +148,6 @@ button#wish {
     transition: transform 0.2s ease;
 }
 
-button#instruction:hover {
+button#wish:hover {
     transform: scale(1.05); /* Pequeño efecto de agrandado al pasar el cursor */
 }
