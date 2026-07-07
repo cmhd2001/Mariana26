@@ -10,165 +10,175 @@
     <link rel="stylesheet" href="./gallery2.css">
     <style> @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap'); </style>
 </head>
-<body>
-    <h1 style="font-family: 'Limelight', cursive; text-align: center; color: #F8EBFE; font-size: 35px"> ¡Feliz Cumpleaños, Mariana!</h1>
-    <p style="text-align: center; color: #4f0278; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 15px;"> De parte de todos quienes te amamos &lt3 </p>
-
-    <section class="swiper-container">
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="../images/1.jfif" alt="Mariana chikita">
-                                <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                            </div>
-                            <div class="flip-card-back">
-                                <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="../images/2.jfif" alt="Mariana Orange">
-                                <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                            </div>
-                            <div class="flip-card-back">
-                                <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="../images/3.jfif" alt="Mariana Artsy">
-                                <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                            </div>
-                            <div class="flip-card-back">
-                                <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                    <img src="../images/4.jfif" alt="mariana cumple">
-                                <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                            </div>
-                            <div class="flip-card-back">
-                                <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                    <img src="../images/5.jpeg" alt="mariana fiesta">
-                                <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
-                            </div>
-                            <div class="flip-card-back">
-                                <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="swiper-pagination"></div>
-            
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </section>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
-
+<body class="is-loading">
     <script>
-        const swiper = new Swiper('.swiper', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 1, 
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2.5,
-                slideShadows: false
-            },
-            direction: 'horizontal',
-            loop: true,
-
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
-            },
-            keyboard: {
-                enabled: true
-            },
-
-            mousewheel: {
-                thresholdDelta: 70
-            },
-
-            breakpoints: {
-                560: {
-                    slidesPerView: 1.5
-                },
-                768: {
-                    slidesPerView: 2
-                },
-                1024: {
-                    slidesPerView: 3
-                }
-            }
+        window.addEventListener('load', () => {
+            // Cuando todo el documento y activos (como el fondo radial) hayan cargado
+            // quitamos la clase de carga para activar la aparición del contenido.
+            document.body.classList.remove('is-loading');
         });
     </script>
+    
+    <div class="content-wrapper">
+        
+        <h1 style="font-family: 'Limelight', cursive; text-align: center; color: #F8EBFE; font-size: 35px"> ¡Feliz Cumpleaños, Mariana!</h1>
+        <p style="text-align: center; color: #4f0278; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 15px;"> De parte de todos quienes te amamos &lt3 </p>
 
+        <section class="swiper-container">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../images/1.jfif" alt="Mariana chikita">
+                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../images/2.jfif" alt="Mariana Orange">
+                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="../images/3.jfif" alt="Mariana Artsy">
+                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                        <img src="../images/4.jfif" alt="mariana cumple">
+                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                        <img src="../images/5.jpeg" alt="mariana fiesta">
+                                    <div class="front-text">Haz clic para ver tu sorpresa 🎁</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <iframe src="https://drive.google.com/file/d/TU_ID_DE_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <button class="back-flip-btn"><img src="../images/return.png" alt="Return"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <script>// 1. Seleccionamos TODAS las tarjetas de la página mediante su clase (.flip-card)
-        const allCards = document.querySelectorAll('.flip-card');
+                <div class="swiper-pagination"></div>
+                
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
 
-        // 2. Recorremos cada tarjeta una por una
-        allCards.forEach((card) => {
-            
-            // 3. Buscamos el "inner" y el "botón" EXCLUSIVAMENTE dentro de ESTA tarjeta actual
-            const cardInner = card.querySelector('.flip-card-inner');
-            const backButton = card.querySelector('.back-flip-btn');
+        <script>
+            const swiper = new Swiper('.swiper', {
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 1, 
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2.5,
+                    slideShadows: false
+                },
+                direction: 'horizontal',
+                loop: true,
 
-            // Evento para voltear al frente (Clic en la tarjeta)
-            card.addEventListener('click', (e) => {
-                if (!cardInner.classList.contains('is-flipped')) {
-                    cardInner.classList.add('is-flipped');
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                keyboard: {
+                    enabled: true
+                },
+
+                mousewheel: {
+                    thresholdDelta: 70
+                },
+
+                breakpoints: {
+                    560: {
+                        slidesPerView: 1.5
+                    },
+                    768: {
+                        slidesPerView: 2
+                    },
+                    1024: {
+                        slidesPerView: 3
+                    }
                 }
             });
+        </script>
 
-            // Evento para regresar (Clic en el botón de la flecha trasera)
-            backButton.addEventListener('click', (e) => {
-                e.stopPropagation(); // Evita activar el clic de la tarjeta padre por accidente
-                cardInner.classList.remove('is-flipped');
+
+        <script>// 1. Seleccionamos TODAS las tarjetas de la página mediante su clase (.flip-card)
+            const allCards = document.querySelectorAll('.flip-card');
+
+            // 2. Recorremos cada tarjeta una por una
+            allCards.forEach((card) => {
+                
+                // 3. Buscamos el "inner" y el "botón" EXCLUSIVAMENTE dentro de ESTA tarjeta actual
+                const cardInner = card.querySelector('.flip-card-inner');
+                const backButton = card.querySelector('.back-flip-btn');
+
+                // Evento para voltear al frente (Clic en la tarjeta)
+                card.addEventListener('click', (e) => {
+                    if (!cardInner.classList.contains('is-flipped')) {
+                        cardInner.classList.add('is-flipped');
+                    }
+                });
+
+                // Evento para regresar (Clic en el botón de la flecha trasera)
+                backButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Evita activar el clic de la tarjeta padre por accidente
+                    cardInner.classList.remove('is-flipped');
+                });
             });
-        });
-    </script>
-
+        </script>
+    </div>
 </body>
 </html>

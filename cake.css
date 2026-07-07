@@ -1,6 +1,6 @@
 body {
     background: #fdf7ff;
-background: radial-gradient(circle,rgba(253, 247, 255, 1) 0%, rgba(196, 91, 252, 1) 100%, rgba(233, 208, 247, 1) 50%);
+    background: radial-gradient(circle,rgba(253, 247, 255, 1) 0%, rgba(196, 91, 252, 1) 100%, rgba(233, 208, 247, 1) 50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,13 @@ background: radial-gradient(circle,rgba(253, 247, 255, 1) 0%, rgba(196, 91, 252,
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
+
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+}
+
+body.fade-out {
+    opacity: 0;
 }
 
 h1 {

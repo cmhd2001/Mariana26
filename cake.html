@@ -64,6 +64,10 @@
             newMessage.textContent = "Que todos tus sueños y metas se hagan realidad en este nuevo año de vida ❤️💫";
             
             wishButton.addEventListener('click', () => {
+                // Agrega la clase al body para que empiece a desaparecer lentamente
+                document.body.classList.add('fade-out');
+                
+                // Esperamos 800ms (lo mismo que dura la transición CSS) y redirigimos
                 setTimeout(() => {
                     window.location.href = "./gallery/gallery2.html"; 
                 }, 1000);
