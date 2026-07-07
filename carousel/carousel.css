@@ -117,6 +117,7 @@ h1 {
     overflow: hidden;
     background-color: #000000;
     position: relative; /* Clave para el posicionamiento absoluto del iframe */
+    z-index: 1;
 }
 
 /* Las imágenes se adaptan estirándose a lo alto y recortando limpiamente los lados excedentes */
@@ -134,9 +135,9 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
+    width: 120%;
     height: 100%;
-    transform: translate(-50%, -50%); /* Lo centra matemáticamente en el eje X e Y */
+    transform: translate(-50%, -50%) scale(1.02); /* Lo centra matemáticamente en el eje X e Y */
     object-fit: cover; 
     border: none;
     display: block;
