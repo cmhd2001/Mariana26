@@ -1,0 +1,178 @@
+body {
+  background: #CC73FC;
+  background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; 
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; 
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #CC73FC;
+  background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
+  z-index: -1;
+  opacity: 0; 
+  transition: opacity 0.75s ease-in-out; 
+}
+
+body:not(.is-loading)::before {
+  opacity: 1;
+}
+
+body.fade-out .content-wrapper {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.75s ease-in-out;
+  pointer-events: none;
+}
+
+body:not(.is-loading) .content-wrapper {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+h1 {
+  font-family: 'Limelight', cursive;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+#back-to-gallery {
+  background-color: #2F1042;
+  color: #ffffff;
+  border: none;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0 4px 15px rgba(47, 16, 66, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s;
+}
+
+#back-to-gallery:hover {
+  transform: scale(1.05);
+  background-color: #401759;
+}
+
+/* ========================
+       CARRUSEL SWIPER
+   ======================== */
+
+   .swiper-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.swiper {
+    width: 100%;
+    max-width: 900px;
+    height: 450;
+    border-radius: 8px;
+    position: relative; /* Asegura el correcto comportamiento interno */
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff;
+}
+/* ============================================
+        BOTONES LATERALES DE NAVEGACIÓN
+   ============================================ */
+.custom-carousel-btn {
+  background-color: rgba(47, 16, 66, 0.85);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s, transform 0.2s;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; /* Por encima de los videos */
+}
+
+/* Ubicación del botón izquierdo */
+#swiperPrevBtn {
+    left: 5px;
+}
+
+/* Ubicación del botón derecho */
+#swiperNextBtn {
+    right: 5px;
+}
+
+/* ============================
+      CONTENEDOR DE IMAGENES
+   ============================ */
+
+   /* Contenedor multimedia exacto de tus archivos previos */
+.carousel-media-box {
+    width: 280px;   
+    height: 420px;  
+    margin: 0 auto; 
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    background-color: #000000;
+    position: relative; /* Clave para el posicionamiento absoluto del iframe */
+    z-index: 1;
+}
+
+/* Las imágenes se adaptan estirándose a lo alto y recortando limpiamente los lados excedentes */
+.carousel-media-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /* Asegura que el rostro/centro del video no se mueva */
+    border: none;
+    display: block;
+}
+
+/* Forzamos al iframe de Google Drive a expandirse al 100% real de la tarjeta */
+.carousel-media-box iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(1.02); /* Lo centra matemáticamente en el eje X e Y */
+    object-fit: cover; 
+    border: none;
+    display: block;
+}

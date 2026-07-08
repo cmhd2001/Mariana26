@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Galería de Momentos</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="stylesheet" href="./moments.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css" />
+    <style> @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap'); </style>
+</head>
+<body class="is-loading">
+    
+    <script>
+        window.addEventListener('load', () => {
+            document.body.classList.remove('is-loading');
+        });
+    </script>
+    
+    <div class="content-wrapper">
+        
+        <h1 style="color: #F8EBFE; font-size: 45px"> Galería de Momentos 🌟</h1>
+
+        <section class="swiper-container">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1t1-XrGapNKQg6aVFP9rqSNEHBasgJIp7/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <img src="./images/16.png" alt="Mariana y Ana comiendo asquerositos">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1oIb1rQ8UBVKsOmzhSiz-_aAK8V_aGh0X/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <img src="./images/13.JPG" alt="Mariana surfista">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <img src="./images/8.jpeg" alt="Mariana y Carmen Secret Santa">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1ZJ1wVvkNLC_l5wqLK_90QdVGG_mYRRo7/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-pagination"></div>
+                
+                <button class="custom-carousel-btn" type="button" id="swiperPrevBtn" aria-label="Anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="custom-carousel-btn" type="button" id="swiperNextBtn" aria-label="Siguiente">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </section>
+
+        <button id="back-to-gallery"> Revive tus felicitaciones </button>
+
+    </div>
+
+    <script>        
+        const backButton = document.getElementById('back-to-gallery');
+        
+        backButton.addEventListener('click', () => {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = "../gallery/gallery2.html"; 
+            }, 1000);
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 1, 
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 2.5,
+                slideShadows: false
+            },
+            direction: 'horizontal',
+            loop: true,
+
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '#swiperNextBtn',
+                prevEl: '#swiperPrevBtn'
+            },
+            keyboard: {
+                enabled: true
+            },
+
+            mousewheel: {
+                thresholdDelta: 70
+            },
+
+            breakpoints: {
+                560: {
+                    slidesPerView: 1.5
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+</body>
+</html>
