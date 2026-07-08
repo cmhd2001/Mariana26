@@ -1,0 +1,251 @@
+body {
+  background: #fdf7ff;
+  background: radial-gradient(circle,rgba(253, 247, 255, 1) 0%, rgba(196, 91, 252, 1) 100%, rgba(233, 208, 247, 1) 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; 
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; 
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #CC73FC;
+  background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
+  z-index: -1; /* Se mantiene detrás de todo */
+  
+  opacity: 0; 
+  transition: opacity 0.75s ease-in-out; 
+}
+
+/* Cuando se remueve la clase de carga, el fondo hace Fade In */
+body:not(.is-loading)::before {
+    opacity: 1;
+}
+
+body.fade-out .content-wrapper {
+    opacity: 0 !important;
+    pointer-events: none; /* Evita que se pueda hacer clic mientras desaparece */
+}
+
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0; /* Empieza totalmente invisible */
+    /* Configuramos la transición de aparición (1 segundo) */
+    transition: opacity 0.75s ease-in-out;
+    pointer-events: none; /* Desactiva interacción mientras está invisible */
+}
+
+body:not(.is-loading) .content-wrapper {
+    opacity: 1; /* Se vuelve visible */
+    pointer-events: auto; /* Reactiva interacción */
+}
+
+h1{
+  font-family: 'Limelight', cursive;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+p{
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 4px 0 0; 
+}
+
+.name-tag{
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic; 
+}
+
+/* ============================
+      CONTENEDOR DEL CARRUSEL
+   ============================ */
+
+.carousel-container-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; 
+  width: 100%;          /* Se expande a lo ancho de la laptop */
+  max-width: 1400px;   /* Evita que se deforme en pantallas gigantes */
+  padding: 2px 0 10px;
+  margin-top: 0;
+}
+
+/* La ventana recortada por donde pasan las tarjetas */
+.carousel-view {
+  width: 100%;
+  overflow: hidden;    /* Recorta las tarjetas excedentes */
+  padding: 5px 5px 2px;
+}
+
+/* Activado por JS para transiciones suaves al pulsar botones */
+.carousel-view.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* La línea horizontal infinita que contiene a los elementos uno al lado del otro */
+.carousel-track {
+  display: flex;
+  gap: 25px;           /* Separación limpia entre tarjetas */
+  width: max-content;
+}
+
+/* Cada iteración del carrusel se comporta de forma rígida horizontal */
+.carousel-slide-item {
+  flex-shrink: 0;
+}
+
+
+/* ===========================================
+        BOTONES LATERALES DE NAVEGACIÓN
+   =========================================== */
+.custom-carousel-btn {
+  background-color: rgba(47, 16, 66, 0.85);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s, transform 0.2s;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.custom-carousel-btn:hover {
+  background-color: rgb(204, 115, 252);
+  transform: scale(1.1);
+}
+
+/* ============================
+            FLIP CARDS
+   ============================ */
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 280px;
+  height: 420px;
+  perspective: 1000px;
+  margin: 8px auto 5px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  cursor: pointer; /* Cambiado a cursor de mano para indicar que es clickeable */
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  overflow: hidden;
+  
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-back {
+  position: relative;
+  background-color: #000000;
+  transform: rotateY(180deg);
+}
+
+.flip-card-back iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 125%;
+  height: 100%;
+  transform: translate(-50%, -50%) scale(1.02); /* Lo centra matemáticamente en el eje X e Y */
+  object-fit: cover; 
+  border: none;
+  display: block;
+}
+
+.back-flip-btn img {
+  width: 18px;      
+  height: auto;     
+  display: block;
+}
+
+.back-flip-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 10; 
+  background-color: #dcc0ec; 
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.back-flip-btn:hover {
+  background-color: rgb(47, 16, 66);
+  transform: scale(1.05);
+}
+
+/* ============================
+      REDIRECCION A MOMENTOS
+   ============================ */
+#go-to-moments {
+  background-color: #2F1042;
+  color: #ffffff;
+  border: none;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding: 10px 19px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 15px rgba(47, 16, 66, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s;
+}
+
+#go-to-moments:hover {
+  transform: scale(1.05);
+  background-color: #401759;
+}
