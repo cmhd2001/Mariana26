@@ -75,6 +75,120 @@ h1 {
   background-color: #401759;
 }
 
+/* ==========================================================================
+   NUEVO LOADER: LÍNEAS ESCALANDO (SVG OPTIMIZADO)
+   ========================================================================== */
+
+/* Variables CSS para controlar la estética fácilmente */
+:root {
+  --loader-duration: 2s;     /* Duración total del ciclo de animación */
+  --path-length: 157px;      /* Longitud exacta calculada del trazo SVG */
+}
+
+/* Pantalla completa del loader con el degradado de tu paleta original */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #CC73FC; /* Tu fondo actual de moments.css */
+  background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Contenedor del SVG para controlar el tamaño general del loader en pantalla */
+.svg-loader-container {
+  width: 120px;   /* Modifica este ancho si quieres el loader más grande o pequeño */
+  height: auto;
+}
+
+.svg-loader-container svg {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+}
+
+/* Animación de desplazamiento vertical en los grupos (<g>) */
+.svg-loader-container svg g {
+  animation: slide var(--loader-duration) linear infinite;
+}
+
+/* Control del segundo trazo (Desfase del delay: 2s / 4 = 0.5s) */
+.svg-loader-container svg g:nth-child(2) {
+  animation-delay: calc(var(--loader-duration) / 4);
+}
+
+.svg-loader-container svg g:nth-child(2) path {
+  animation-delay: calc(var(--loader-duration) / 4);
+  stroke-dasharray: 0px calc(var(--path-length) + 1px);
+  stroke-dashoffset: 1px;
+}
+
+/* Estilos de personalización estética de las líneas (Grosor y puntas) */
+.svg-loader-container svg path {
+  stroke: url(#gradient);   /* Vinculado al id del linearGradient del HTML */
+  stroke-width: 16px;       /* Grosor de las líneas (Ajústalo a tu gusto) */
+  stroke-linecap: round;    /* Bordes redondeados suaves */
+  fill: none;
+  stroke-dasharray: 0 var(--path-length);
+  stroke-dashoffset: 0;
+  animation: escalade var(--loader-duration) cubic-bezier(0.8, 0, 0.2, 1) infinite;
+}
+
+/* Texto debajo de las líneas animadas */
+.loader-text {
+  color: #F8EBFE;
+  font-family: 'Segoe UI', sans-serif;
+  margin-top: 30px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Efecto Fade Out automático al terminar de cargar la web */
+body:not(.is-loading) .page-loader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   FOTOGRAMAS CLAVE (KEYFRAMES DE ANIMACIÓN)
+   ========================================================================== */
+
+@keyframes slide {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(90px);
+  }
+}
+
+@keyframes escalade {
+  0% {
+    stroke-dasharray: 0 var(--path-length);
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: var(--path-length) var(--path-length);
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: var(--path-length) var(--path-length);
+    /* Cálculo matemático nativo: -(157px - 1px) = -156px */
+    stroke-dashoffset: calc(-1 * (var(--path-length) - 1px));
+  }
+}
+
 /* ========================
        CARRUSEL SWIPER
    ======================== */
