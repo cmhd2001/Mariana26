@@ -151,3 +151,26 @@ button#wish {
 button#wish:hover {
     transform: scale(1.05); /* Pequeño efecto de agrandado al pasar el cursor */
 }
+
+/* ==========================================
+   ADAPTACIÓN PARA MÓVILES (PANTALLAS CHICAS)
+   ========================================== */
+@media (max-width: 600px) {
+    body {
+        /* Cambiamos a min-height para evitar que se corte el contenido en pantallas muy cortas */
+        height: auto;
+        min-height: 100vh;
+        padding: 20px 10px;
+        box-sizing: border-box;
+        overflow-y: auto; /* Permite scroll vertical si el teléfono es muy pequeño */
+    }
+
+    h1 {
+        font-size: 28px !important; /* Reduce el título para que no se parta feo en el celular */
+        text-align: center;
+    }
+
+    p {
+        margin-bottom: 30px; /* Reduce espacios excesivos en móviles */
+    }
+}

@@ -398,3 +398,45 @@ body:not(.is-loading) .page-loader {
   transform: scale(1.05);
   background-color: #401759;
 }
+
+/* ==========================================
+   ADAPTACIÓN PARA MÓVILES (PANTALLAS CHICAS)
+   ========================================== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 26px !important; /* Título responsivo */
+        padding: 0 15px;
+    }
+
+    /* Modificamos el contenedor para cambiar la distribución en móviles */
+    .carousel-container-wrapper {
+        position: relative;
+        flex-direction: column; /* Alinea los elementos verticalmente */
+        padding-bottom: 75px;  /* Dejamos un espacio abajo reservado para los botones */
+        gap: 0;
+    }
+
+    /* Sacamos los botones del flujo lateral y los colocamos abajo centrados */
+    .custom-carousel-btn {
+        position: absolute;
+        bottom: 15px;
+        top: auto;
+        transform: none;
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Posicionamos la flecha izquierda abajo a la izquierda del centro */
+    #prevBtn {
+        left: calc(50% - 60px);
+    }
+
+    /* Posicionamos la flecha derecha abajo a la derecha del centro */
+    #nextBtn {
+        right: calc(50% - 60px);
+    }
+
+    .flip-card {
+        margin: 5px auto; /* Centrado perfecto de la tarjeta */
+    }
+}

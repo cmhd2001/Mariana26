@@ -246,7 +246,7 @@ body:not(.is-loading) .page-loader {
 .swiper {
     width: 100%;
     max-width: 900px;
-    height: 450;
+    height: 480px;
     border-radius: 8px;
     position: relative; /* Asegura el correcto comportamiento interno */
 }
@@ -332,4 +332,40 @@ body:not(.is-loading) .page-loader {
     object-fit: cover; 
     border: none;
     display: block;
+}
+
+/* ==========================================
+   ADAPTACIÓN PARA MÓVILES (PANTALLAS CHICAS)
+   ========================================== */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 28px !important; /* Título responsivo */
+        margin-bottom: 15px;
+    }
+
+    .swiper {
+        height: 470px; /* Ajuste fino de la altura del contenedor en móviles */
+    }
+
+    /* Hacemos los botones un poco más pequeños y sutiles en móviles */
+    .custom-carousel-btn {
+        width: 38px;
+        height: 38px;
+        background-color: rgba(47, 16, 66, 0.6); /* Más transparente para no estorbar la vista */
+    }
+
+    /* Los pegamos bien al borde para maximizar el espacio libre del contenido */
+    #swiperPrevBtn {
+        left: 2px;
+    }
+
+    #swiperNextBtn {
+        right: 2px;
+    }
+    
+    /* Achicamos ligeramente las flechas internas de los botones */
+    .custom-carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
 }
