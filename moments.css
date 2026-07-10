@@ -39,16 +39,8 @@ body.fade-out .content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0;
   transition: opacity 0.75s ease-in-out;
-  pointer-events: none;
 }
-
-body:not(.is-loading) .content-wrapper {
-  opacity: 1;
-  pointer-events: auto;
-}
-
 h1 {
   font-family: 'Limelight', cursive;
   text-align: center;
@@ -74,25 +66,17 @@ h1 {
   transform: scale(1.05);
   background-color: #401759;
 }
-
 /* ==========================================================================
-   NUEVO LOADER: LÍNEAS ESCALANDO (SVG OPTIMIZADO)
+   LOADER CAJA DE REGALO VIBRANTE (CSS PURO)
    ========================================================================== */
 
-/* Variables CSS para controlar la estética fácilmente */
-:root {
-  --loader-duration: 2s;     /* Duración total del ciclo de animación */
-  --path-length: 157px;      /* Longitud exacta calculada del trazo SVG */
-}
-
-/* Pantalla completa del loader con el degradado de tu paleta original */
 .page-loader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #CC73FC; /* Tu fondo actual de moments.css */
+  background: #CC73FC;
   background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
   z-index: 9999;
   display: flex;
@@ -104,56 +88,111 @@ h1 {
   opacity: 1;
 }
 
-/* Contenedor del SVG para controlar el tamaño general del loader en pantalla */
-.svg-loader-container {
-  width: 120px;   /* Modifica este ancho si quieres el loader más grande o pequeño */
-  height: auto;
+/* Contenedor principal de la animación */
+.gift-container {
+  position: relative;
+  transform: scale(1.5);
+  width: 100px;
+  height: 120px;
+  animation: gift-bounce 1.2s infinite ease-in-out;
 }
 
-.svg-loader-container svg {
-  overflow: visible;
-  width: 100%;
-  height: 100%;
+/* Cuerpo de la caja */
+.gift-box {
+  position: absolute;
+  bottom: 0;
+  width: 100px;
+  height: 90px;
+  background-color: #FBD960;
+  border-radius: 0 0 8px 8px;
+  animation: gift-pressure 0.6s infinite ease-in-out alternate;
+  transform-origin: bottom center;
 }
 
-/* Animación de desplazamiento vertical en los grupos (<g>) */
-.svg-loader-container svg g {
-  animation: slide var(--loader-duration) linear infinite;
+/* Tapa de la caja */
+.gift-lid {
+  position: absolute;
+  top: -15px;
+  left: -5px;
+  width: 110px;
+  height: 20px;
+  background-color: #FCCC22;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Control del segundo trazo (Desfase del delay: 2s / 4 = 0.5s) */
-.svg-loader-container svg g:nth-child(2) {
-  animation-delay: calc(var(--loader-duration) / 4);
+/* Listón Vertical */
+.gift-ribbon-v {
+  position: absolute;
+  top: -15px;
+  left: 42px;
+  width: 16px;
+  height: 105px;
+  background-color: #C4321C; 
 }
 
-.svg-loader-container svg g:nth-child(2) path {
-  animation-delay: calc(var(--loader-duration) / 4);
-  stroke-dasharray: 0px calc(var(--path-length) + 1px);
-  stroke-dashoffset: 1px;
+/* Listón Horizontal */
+.gift-ribbon-h {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 100px;
+  height: 16px;
+  background-color: #C4321C;
 }
 
-/* Estilos de personalización estética de las líneas (Grosor y puntas) */
-.svg-loader-container svg path {
-  stroke: url(#gradient);   /* Vinculado al id del linearGradient del HTML */
-  stroke-width: 16px;       /* Grosor de las líneas (Ajústalo a tu gusto) */
-  stroke-linecap: round;    /* Bordes redondeados suaves */
-  fill: none;
-  stroke-dasharray: 0 var(--path-length);
-  stroke-dashoffset: 0;
-  animation: escalade var(--loader-duration) cubic-bezier(0.8, 0, 0.2, 1) infinite;
+/* Moño de la caja (Estilo minimalista) */
+.gift-bow {
+  position: absolute;
+  top: -40px;        /* Bajado ligeramente para que asiente perfecto en la tapa */
+  left: 50%;
+  transform: translateX(-50%); 
+  width: 90px;       /* Agrandado de 60px a 90px para dar el aspecto del emoji */
+  height: 40px;
+  z-index: 5;
+  
+  /* NUEVO: Contenedor para alinear los pseudo-elementos sin el nudo central */
+  display: flex;
+  justify-content: space-between;
 }
 
-/* Texto debajo de las líneas animadas */
-.loader-text {
-  color: #F8EBFE;
-  font-family: 'Segoe UI', sans-serif;
-  margin-top: 30px;
-  font-size: 18px;
-  letter-spacing: 1px;
-  text-align: center;
+/* Orejas infladas del lazo (Sin Relleno, Borde Grueso Rojo) */
+.gift-bow::before, 
+.gift-bow::after {
+  content: '';
+  position: relative;
+  width: 50px;
+  height: 40px;
+  background-color: transparent; 
+  border: 11px solid #b32e19; 
+  box-sizing: border-box; 
 }
 
-/* Efecto Fade Out automático al terminar de cargar la web */
+/* Oreja izquierda inflada (Solo Borde) */
+.gift-bow::before {
+  border-radius: 70% 60% 30% 60%;
+  transform: rotate(-10deg);
+}
+
+/* Oreja derecha inflada (Solo Borde) */
+.gift-bow::after {
+  border-radius: 60% 70% 60% 30%;
+  transform: rotate(10deg);
+}
+
+/* Sombra dinámica en el suelo */
+.gift-shadow {
+  position: absolute;
+  bottom: -15px;
+  left: 10px;
+  width: 80px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  animation: shadow-scale 1.2s infinite ease-in-out;
+}
+
+/* Desvanecimiento al cargar la web */
 body:not(.is-loading) .page-loader {
   opacity: 0;
   visibility: hidden;
@@ -161,34 +200,38 @@ body:not(.is-loading) .page-loader {
 }
 
 /* ==========================================================================
-   FOTOGRAMAS CLAVE (KEYFRAMES DE ANIMACIÓN)
+   ANIMACIONES (EFECTO BUMPS & EXPLOSIÓN DE PRESIÓN)
    ========================================================================== */
 
-@keyframes slide {
-  0% {
-    transform: translateY(-10px);
+/* 1. Animación de balanceo y saltos constantes */
+@keyframes gift-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(-3deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* 2. El efecto clave: Compresión, estiramiento y sacudidas laterales (Bumps) */
+@keyframes gift-pressure {
+  0% { 
+    transform: scaleX(1) scaleY(1) skewX(0deg); 
   }
-  100% {
-    transform: translateY(90px);
+  30% { 
+    transform: scaleX(1.08) scaleY(0.92) skewX(-4deg); /* Se ensancha de golpe */
+  }
+  60% { 
+    transform: scaleX(0.93) scaleY(1.08) skewX(4deg);  /* Se estira simulando presión interna */
+  }
+  100% { 
+    transform: scaleX(1.05) scaleY(0.95) skewX(0deg); 
   }
 }
 
-@keyframes escalade {
-  0% {
-    stroke-dasharray: 0 var(--path-length);
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: var(--path-length) var(--path-length);
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dasharray: var(--path-length) var(--path-length);
-    /* Cálculo matemático nativo: -(157px - 1px) = -156px */
-    stroke-dashoffset: calc(-1 * (var(--path-length) - 1px));
-  }
+/* 3. La sombra acompaña al regalo encogiéndose cuando sube */
+@keyframes shadow-scale {
+  0%, 50%, 100% { transform: scale(1); opacity: 1; }
+  25%, 75% { transform: scale(0.7); opacity: 0.5; filter: blur(2px); }
 }
-
 /* ========================
        CARRUSEL SWIPER
    ======================== */

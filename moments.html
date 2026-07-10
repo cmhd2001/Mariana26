@@ -13,26 +13,16 @@
 <body class="is-loading">
 
     <div class="page-loader">
-        <div class="svg-loader-container">
-            <svg viewBox="0 0 100 150">
-                <g>
-                    <path d="M 50,100 A 1,1 0 0 1 50,0"/>
-                </g>
-                <g>
-                    <path d="M 50,75 A 1,1 0 0 0 50,-25"/>
-                </g>
-                <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#e3a812; stop-opacity:1" />
-                        <stop offset="25%" style="stop-color:#ffd86e; stop-opacity:1" />
-                        <stop offset="50%" style="stop-color:#F7E194; stop-opacity:1" />
-                        <stop offset="75%" style="stop-color:#ffd86e; stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#EDB21D; stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-            </svg>
+        <div class="gift-container">
+            <div class="gift-box">
+                <div class="gift-lid"></div>
+                <div class="gift-ribbon-v"></div>
+                <div class="gift-ribbon-h"></div>
+                <div class="gift-bow"></div>
+            </div>
+            <div class="gift-shadow"></div>
         </div>
-    </div>    
+    </div>
     
     <script>
         window.addEventListener('load', () => {
@@ -42,7 +32,7 @@
     
     <div class="content-wrapper">
         
-        <h1 style="color: #F8EBFE; font-size: 45px"> Galería de Momentos 🌟</h1>
+        <h1 style="color: #F8EBFE; font-size: 45px"> Galería de Momentos</h1>
 
         <section class="swiper-container">
             <div class="swiper">
@@ -67,6 +57,16 @@
                             <img src="./images/13.JPG" alt="Mariana surfista">
                         </div>
                     </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1HZDUorFh01e-KLXepg9YQ_DjstXa9ahq/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>                    
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1E1haKSXeovoiEaLWTxD3UqHRDCF0gtWR/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>  
                     <div class="swiper-slide">
                         <div class="carousel-media-box">
                             <iframe src="https://drive.google.com/file/d/1v3bwVOLYm28wuX_X5PdW77dtIBV_w02Q/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -104,9 +104,24 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1WEnxkBUhRg5qMfva993dVtJYhDZTZsyJ/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>                    
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
                             <img src="./images/20.jpeg" alt="Mariana y Rector">
                         </div>
                     </div>
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <iframe src="https://drive.google.com/file/d/1s_f_HGmyUmSSGRRmanNpiDWNtb4zt8pn/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>                    
+                    <div class="swiper-slide">
+                        <div class="carousel-media-box">
+                            <img src="./images/15.jpeg" alt="Mariana y Ariana training">
+                        </div>
+                    </div>                    
                 </div>
 
                 <div class="swiper-pagination"></div>
@@ -120,7 +135,7 @@
             </div>
         </section>
 
-        <button id="back-to-gallery"> Revive tus felicitaciones ❤️ </button>
+        <button id="back-to-gallery"> Revive tus felicitaciones </button>
 
     </div>
 

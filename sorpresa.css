@@ -20,8 +20,7 @@ body::before {
   height: 100%;
   background: #CC73FC;
   background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
-  z-index: -1; /* Se mantiene detrás de todo */
-  
+  z-index: -1; 
   opacity: 0; 
   transition: opacity 0.75s ease-in-out; 
 }
@@ -41,15 +40,7 @@ body.fade-out .content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0; /* Empieza totalmente invisible */
-    /* Configuramos la transición de aparición (1 segundo) */
     transition: opacity 0.75s ease-in-out;
-    pointer-events: none; /* Desactiva interacción mientras está invisible */
-}
-
-body:not(.is-loading) .content-wrapper {
-    opacity: 1; /* Se vuelve visible */
-    pointer-events: auto; /* Reactiva interacción */
 }
 
 h1{
@@ -151,7 +142,7 @@ p{
 /* Moño de la caja (Estilo minimalista) */
 .gift-bow {
   position: absolute;
-  top: -46px;        /* Bajado ligeramente para que asiente perfecto en la tapa */
+  top: -40px;        /* Bajado ligeramente para que asiente perfecto en la tapa */
   left: 50%;
   transform: translateX(-50%); 
   width: 90px;       /* Agrandado de 60px a 90px para dar el aspecto del emoji */
@@ -171,7 +162,7 @@ p{
   width: 50px;
   height: 40px;
   background-color: transparent; 
-  border: 12px solid #E24A33; 
+  border: 11px solid #E24A33; 
   box-sizing: border-box; 
 }
 
@@ -279,7 +270,6 @@ body:not(.is-loading) .page-loader {
   flex-shrink: 0;
 }
 
-
 /* ===========================================
         BOTONES LATERALES DE NAVEGACIÓN
    =========================================== */
@@ -338,8 +328,7 @@ body:not(.is-loading) .page-loader {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 15px;
-  overflow: hidden;
-  
+  overflow: hidden;  
 }
 
 .flip-card-front img {
