@@ -20,14 +20,8 @@ body::before {
   height: 100%;
   background: #CC73FC;
   background: radial-gradient(circle, rgba(204, 115, 252, 1) 0%, rgba(92, 3, 140, 1) 100%, rgba(0, 0, 0, 1) 50%);
-  z-index: -1; 
-  opacity: 0; 
+  z-index: -1;
   transition: opacity 0.75s ease-in-out; 
-}
-
-/* Cuando se remueve la clase de carga, el fondo hace Fade In */
-body:not(.is-loading)::before {
-    opacity: 1;
 }
 
 body.fade-out .content-wrapper {
