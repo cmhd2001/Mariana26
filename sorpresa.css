@@ -259,11 +259,15 @@ body:not(.is-loading) .page-loader {
   scroll-behavior: smooth;
 }
 
-/* La línea horizontal infinita que contiene a los elementos uno al lado del otro */
+/* La línea horizontal que contiene a los elementos uno al lado del otro */
 .carousel-track {
   display: flex;
-  gap: 25px;           /* Separación limpia entre tarjetas */
+  gap: 25px;           
   width: max-content;
+  
+  /* SOLUCIÓN: Colchón de aire gigante. Permite que la primera y última tarjeta 
+     puedan centrarse en la pantalla sin chocar con los bordes ni cortar el iframe en 3D */
+  padding: 15px 25px; 
 }
 
 /* Cada iteración del carrusel se comporta de forma rígida horizontal */

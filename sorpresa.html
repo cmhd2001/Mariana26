@@ -362,7 +362,7 @@
         
         <button id="go-to-moments"> Y aún hay más... </button>         
 
-        <script>
+<script>
             const carouselTrack = document.querySelector('.carousel-track');
             const carouselView = document.querySelector('.carousel-view');
             const prevBtn = document.getElementById('prevBtn');
@@ -371,25 +371,30 @@
 
             const items = Array.from(carouselTrack.children);
             const N = items.length;
-            const gap = 25;
             let currentIndex = 0;
 
-            function getItemWidth() {
-                return items[0].offsetWidth + gap;
-            }
-
-            function goTo(index, animate) {
-                if (animate === undefined) animate = true;
+            // SOLUCIÓN MATEMÁTICA: Centrado perfecto basado en la posición real del elemento
+            function goTo(index, animate = true) {
                 currentIndex = ((index % N) + N) % N;
+                
                 if (!animate) carouselView.classList.remove('smooth-scroll');
-                carouselView.scrollLeft = currentIndex * getItemWidth();
+                
+                const targetItem = items[currentIndex];
+                // Calcula el scroll exacto para que el centro de la tarjeta quede en el centro de la pantalla
+                const centerPosition = targetItem.offsetLeft - (carouselView.clientWidth / 2) + (targetItem.offsetWidth / 2);
+                
+                carouselView.scrollLeft = centerPosition;
+                
                 if (!animate) {
-                    carouselView.offsetHeight;
+                    carouselView.offsetHeight; // Forzar asimilación gráfica
                     carouselView.classList.add('smooth-scroll');
                 }
             }
 
+            // Inicializar centrado rápido al cargar
             goTo(0, false);
+            // Reajustar si el usuario voltea el celular o cambia el tamaño de la ventana
+            window.addEventListener('resize', () => goTo(currentIndex, false));
 
             nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
             prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
@@ -422,14 +427,30 @@
                 const walk = (x - startX) * 1.5;
                 if (Math.abs(x - startX) > 5) wasDragging = true;
                 e.preventDefault();
-                const itemW = getItemWidth();
-                carouselView.scrollLeft = Math.max(0, Math.min(scrollLeftStart - walk, (N - 1) * itemW));
+                carouselView.scrollLeft = scrollLeftStart - walk;
             });
+
+            // Función para atrapar la tarjeta más cercana tras soltar el ratón o el dedo
+            const snapToClosest = () => {
+                let closestIndex = 0;
+                let minDistance = Infinity;
+                const viewCenter = carouselView.scrollLeft + (carouselView.clientWidth / 2);
+                
+                items.forEach((item, index) => {
+                    const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
+                    const distance = Math.abs(viewCenter - itemCenter);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIndex = index;
+                    }
+                });
+                goTo(closestIndex);
+            };
 
             const stopDragging = () => {
                 if (!isDown) return;
                 isDown = false;
-                goTo(Math.round(carouselView.scrollLeft / getItemWidth()));
+                snapToClosest();
             };
 
             carouselView.addEventListener('mouseup', stopDragging);
@@ -447,7 +468,7 @@
             }, { passive: true });
 
             carouselView.addEventListener('touchend', () => {
-                goTo(Math.round(carouselView.scrollLeft / getItemWidth()));
+                snapToClosest();
             }, { passive: true });
 
             goButton.addEventListener('click', () => {
@@ -456,11 +477,12 @@
             });
         </script>
         
-        <script>// 1. Seleccionamos TODAS las tarjetas de la página mediante su clase (.flip-card)
+<script>
+            // 1. Seleccionamos TODAS las tarjetas de la página mediante su clase (.flip-card)
             const allCards = document.querySelectorAll('.flip-card');
 
             // 2. Recorremos cada tarjeta una por una
-            allCards.forEach((card) => {
+            allCards.forEach((card, index) => {
                 
                 // 3. Buscamos el "inner" y el "botón" EXCLUSIVAMENTE dentro de ESTA tarjeta actual
                 const cardInner = card.querySelector('.flip-card-inner');
@@ -468,14 +490,21 @@
 
                 // Evento para voltear al frente (Clic en la tarjeta)
                 card.addEventListener('click', (e) => {
+                    e.preventDefault(); // Bloquea los saltos nativos del navegador por el iframe
+                    
                     if (!cardInner.classList.contains('is-flipped')) {
                         cardInner.classList.add('is-flipped');
+                        
+                        // MAGIA: Al hacer clic, forzamos que el script centre suavemente 
+                        // esta tarjeta, anulando el salto brusco de foco del navegador.
+                        goTo(index); 
                     }
                 });
 
                 // Evento para regresar (Clic en el botón de la flecha trasera)
                 backButton.addEventListener('click', (e) => {
                     e.stopPropagation(); // Evita activar el clic de la tarjeta padre por accidente
+                    e.preventDefault();
                     cardInner.classList.remove('is-flipped');
                 });
             });
