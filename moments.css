@@ -345,7 +345,7 @@ body:not(.is-loading) .page-loader {
    ========================================== */
 @media (max-width: 600px) {
     h1 {
-        font-size: 28px !important; /* Título responsivo */
+        font-size: 32px !important; /* Título responsivo */
         margin-bottom: 15px;
     }
 
@@ -354,8 +354,8 @@ body:not(.is-loading) .page-loader {
        perfectamente al lado de la tarjeta de 280px y el arrastre será preciso. */
     .swiper {
         width: 100%;
-        max-width: 350px;
-        height: 470px; 
+        max-width: 500px;
+        height: 450px; 
         margin: 0 auto; /* Asegura el centrado en la pantalla */
     }
 
