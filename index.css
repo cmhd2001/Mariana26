@@ -127,6 +127,9 @@ p {
     pointer-events: none;
 }
 
+#instruction {
+    text-align: center;
+}
 /* Esto afectará tanto al texto inicial como al botón cuando aparezca */
 #wish {
     font-family: sans-serif;

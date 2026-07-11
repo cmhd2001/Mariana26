@@ -347,98 +347,49 @@
             const nextBtn = document.getElementById('nextBtn');
             const goButton = document.getElementById('go-to-moments');
 
-            // 1. Clonación dinámica para crear el bucle infinito sin picar código de más
-            const originalItems = Array.from(carouselTrack.children);
-            
-            // Clonamos los ítems al final e inicio para crear la ilusión de infinito
-            originalItems.forEach(item => {
-                let cloneAfter = item.cloneNode(true);
-                carouselTrack.appendChild(cloneAfter);
-            });
-            originalItems.reverse().forEach(item => {
-                let cloneBefore = item.cloneNode(true);
-                carouselTrack.insertBefore(cloneBefore, carouselTrack.firstChild);
-            });
+            const items = Array.from(carouselTrack.children);
+            const N = items.length;
+            const gap = 25;
+            let currentIndex = 0;
 
-            // 2. Posicionamiento Inicial (Saltamos los clones del principio)
-            const gap = 25; 
-            const itemWidth = originalItems[0].offsetWidth + gap;
-            const initialOffset = itemWidth * originalItems.length;
-            
-            carouselView.scrollLeft = initialOffset;
+            function getItemWidth() {
+                return items[0].offsetWidth + gap;
+            }
 
-            // Activamos scroll suave solo después de posicionarlo
-            setTimeout(() => {
-                carouselView.classList.add('smooth-scroll');
-            }, 50);
-
-            // 3. Control de los Botones (Avanzar / Retroceder de uno en uno)
-            nextBtn.addEventListener('click', () => {
-                carouselView.scrollLeft += itemWidth;
-            });
-
-            prevBtn.addEventListener('click', () => {
-                carouselView.scrollLeft -= itemWidth;
-            });
-
-            document.addEventListener('keydown', (event) => {
-                // Si el usuario presiona la flecha derecha
-                if (event.key === 'ArrowRight') {
-                    nextBtn.click(); // Simula un clic en el botón derecho
-                }
-                // Si el usuario presiona la flecha izquierda
-                else if (event.key === 'ArrowLeft') {
-                    prevBtn.click(); // Simula un clic en el botón izquierdo
-                }
-            });
-
-            // 4. Reset del Bucle Infinito Invisible
-            carouselView.addEventListener('scroll', () => {
-                const currentScroll = carouselView.scrollLeft;
-                const maxScroll = carouselTrack.scrollWidth - carouselView.clientWidth;
-
-                // Si se desplaza demasiado a la derecha (hacia los clones del final)
-                if (currentScroll >= maxScroll - 5) {
-                    carouselView.classList.remove('smooth-scroll');
-                    carouselView.scrollLeft = initialOffset;
-                    carouselView.offsetHeight; // Forzar reflow
+            function goTo(index, animate) {
+                if (animate === undefined) animate = true;
+                currentIndex = ((index % N) + N) % N;
+                if (!animate) carouselView.classList.remove('smooth-scroll');
+                carouselView.scrollLeft = currentIndex * getItemWidth();
+                if (!animate) {
+                    carouselView.offsetHeight;
                     carouselView.classList.add('smooth-scroll');
                 }
-                
-                // Si se desplaza demasiado a la izquierda (hacia los clones del principio)
-                if (currentScroll <= 5) {
-                    carouselView.classList.remove('smooth-scroll');
-                    carouselView.scrollLeft = maxScroll - initialOffset;
-                    carouselView.offsetHeight; // Forzar reflow
-                    carouselView.classList.add('smooth-scroll');
-                }
+            }
+
+            goTo(0, false);
+
+            nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+            prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+                else if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
             });
 
-            let isDown = false;
-            let startX;
-            let scrollLeftStart;
-            let wasDragging = false; // Evita que la tarjeta se voltee si solo se estaba arrastrando
-
-            // 1. SCROLL CON LA RUEDA DEL MOUSE (Rueda vertical -> Desplazamiento horizontal)
             carouselView.addEventListener('wheel', (e) => {
                 if (e.deltaY !== 0) {
                     e.preventDefault();
-                    carouselView.classList.remove('smooth-scroll'); // Movimiento instantáneo responsivo
-                    carouselView.scrollLeft += e.deltaY * 0.8; // Ajusta el 0.8 si quieres más o menos sensibilidad
-                    
-                    // Restauramos el comportamiento de scroll suave para los botones al detener la rueda
-                    clearTimeout(carouselView.wheelTimeout);
-                    carouselView.wheelTimeout = setTimeout(() => {
-                        carouselView.classList.add('smooth-scroll');
-                    }, 150);
+                    goTo(e.deltaY > 0 ? currentIndex + 1 : currentIndex - 1);
                 }
             }, { passive: false });
 
-            // 2. CLICK Y ARRASTRAR CON EL MOUSE (Para simular swipe en Computadoras)
+            let isDown = false, startX, scrollLeftStart, wasDragging = false;
+
             carouselView.addEventListener('mousedown', (e) => {
                 isDown = true;
                 wasDragging = false;
-                carouselView.classList.remove('smooth-scroll'); // Desactivamos transiciones durante el arrastre dinámico
+                carouselView.classList.remove('smooth-scroll');
                 startX = e.pageX - carouselView.offsetLeft;
                 scrollLeftStart = carouselView.scrollLeft;
             });
@@ -446,52 +397,40 @@
             carouselView.addEventListener('mousemove', (e) => {
                 if (!isDown) return;
                 const x = e.pageX - carouselView.offsetLeft;
-                const walk = (x - startX) * 1.5; // Multiplicador de velocidad de arrastre
-                
-                if (Math.abs(x - startX) > 5) {
-                    wasDragging = true; // Si el mouse se movió más de 5px, el usuario está arrastrando, no haciendo click
-                }
-                
+                const walk = (x - startX) * 1.5;
+                if (Math.abs(x - startX) > 5) wasDragging = true;
                 e.preventDefault();
-                carouselView.scrollLeft = scrollLeftStart - walk;
+                const itemW = getItemWidth();
+                carouselView.scrollLeft = Math.max(0, Math.min(scrollLeftStart - walk, (N - 1) * itemW));
             });
 
             const stopDragging = () => {
+                if (!isDown) return;
                 isDown = false;
-                // Devolvemos el scroll suave de forma segura tras soltar el mouse
-                setTimeout(() => {
-                    carouselView.classList.add('smooth-scroll');
-                }, 50);
+                goTo(Math.round(carouselView.scrollLeft / getItemWidth()));
             };
 
             carouselView.addEventListener('mouseup', stopDragging);
             carouselView.addEventListener('mouseleave', stopDragging);
 
-            // 3. SOLUCIÓN DE CONFLICTO: Evita voltear la tarjeta por error al terminar un arrastre
             carouselView.addEventListener('click', (e) => {
                 if (wasDragging) {
                     e.stopPropagation();
                     e.preventDefault();
                 }
-            }, true); // Usamos 'true' (fase de captura) para interceptar el click antes de que llegue a la tarjeta
+            }, true);
 
-            // 4. MEJORA EN MÓVILES: Desactivar scroll suave durante el Touch nativo para que sea fluido
             carouselView.addEventListener('touchstart', () => {
                 carouselView.classList.remove('smooth-scroll');
             }, { passive: true });
 
             carouselView.addEventListener('touchend', () => {
-                setTimeout(() => {
-                    carouselView.classList.add('smooth-scroll');
-                }, 150);
+                goTo(Math.round(carouselView.scrollLeft / getItemWidth()));
             }, { passive: true });
 
-            // Transición de salida
             goButton.addEventListener('click', () => {
                 document.body.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = "./moments.html"; 
-                }, 1000);
+                setTimeout(() => { window.location.href = "./moments.html"; }, 1000);
             });
         </script>
         
