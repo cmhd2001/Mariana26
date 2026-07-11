@@ -33,7 +33,7 @@
     <div class="content-wrapper">
         
         <h1 style="color: #F8EBFE; font-size: 40px"> ¡Feliz Cumpleaños, Mariana!</h1>
-        <p style="color: #4f0278; font-size: 17px;"> De parte de todos quienes te amamos &lt3 </p>
+        <p style="color: #E2AFFE; font-size: 17px;"> De parte de todos quienes te amamos &lt3 </p>
 
 
         <div class="carousel-container-wrapper">
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="flip-card-back">
                                     <iframe 
-                                        src="https://www.youtube-nocookie.com/embed/ID?rel=0&modestbranding=1&playsinline=1&controls=1" 
+                                        src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&playsinline=1&controls=1" 
                                         loading="lazy" 
                                         frameborder="0" 
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -413,6 +413,78 @@
                     carouselView.classList.add('smooth-scroll');
                 }
             });
+
+            let isDown = false;
+            let startX;
+            let scrollLeftStart;
+            let wasDragging = false; // Evita que la tarjeta se voltee si solo se estaba arrastrando
+
+            // 1. SCROLL CON LA RUEDA DEL MOUSE (Rueda vertical -> Desplazamiento horizontal)
+            carouselView.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    carouselView.classList.remove('smooth-scroll'); // Movimiento instantáneo responsivo
+                    carouselView.scrollLeft += e.deltaY * 0.8; // Ajusta el 0.8 si quieres más o menos sensibilidad
+                    
+                    // Restauramos el comportamiento de scroll suave para los botones al detener la rueda
+                    clearTimeout(carouselView.wheelTimeout);
+                    carouselView.wheelTimeout = setTimeout(() => {
+                        carouselView.classList.add('smooth-scroll');
+                    }, 150);
+                }
+            }, { passive: false });
+
+            // 2. CLICK Y ARRASTRAR CON EL MOUSE (Para simular swipe en Computadoras)
+            carouselView.addEventListener('mousedown', (e) => {
+                isDown = true;
+                wasDragging = false;
+                carouselView.classList.remove('smooth-scroll'); // Desactivamos transiciones durante el arrastre dinámico
+                startX = e.pageX - carouselView.offsetLeft;
+                scrollLeftStart = carouselView.scrollLeft;
+            });
+
+            carouselView.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const x = e.pageX - carouselView.offsetLeft;
+                const walk = (x - startX) * 1.5; // Multiplicador de velocidad de arrastre
+                
+                if (Math.abs(x - startX) > 5) {
+                    wasDragging = true; // Si el mouse se movió más de 5px, el usuario está arrastrando, no haciendo click
+                }
+                
+                e.preventDefault();
+                carouselView.scrollLeft = scrollLeftStart - walk;
+            });
+
+            const stopDragging = () => {
+                isDown = false;
+                // Devolvemos el scroll suave de forma segura tras soltar el mouse
+                setTimeout(() => {
+                    carouselView.classList.add('smooth-scroll');
+                }, 50);
+            };
+
+            carouselView.addEventListener('mouseup', stopDragging);
+            carouselView.addEventListener('mouseleave', stopDragging);
+
+            // 3. SOLUCIÓN DE CONFLICTO: Evita voltear la tarjeta por error al terminar un arrastre
+            carouselView.addEventListener('click', (e) => {
+                if (wasDragging) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            }, true); // Usamos 'true' (fase de captura) para interceptar el click antes de que llegue a la tarjeta
+
+            // 4. MEJORA EN MÓVILES: Desactivar scroll suave durante el Touch nativo para que sea fluido
+            carouselView.addEventListener('touchstart', () => {
+                carouselView.classList.remove('smooth-scroll');
+            }, { passive: true });
+
+            carouselView.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    carouselView.classList.add('smooth-scroll');
+                }, 150);
+            }, { passive: true });
 
             // Transición de salida
             goButton.addEventListener('click', () => {

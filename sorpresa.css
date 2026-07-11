@@ -243,7 +243,7 @@ body:not(.is-loading) .page-loader {
 /* La ventana recortada por donde pasan las tarjetas */
 .carousel-view {
   width: 100%;
-  overflow: hidden;    /* Recorta las tarjetas excedentes */
+  overflow-x: auto; 
   padding: 5px 5px 2px;
 }
 
@@ -398,20 +398,19 @@ body:not(.is-loading) .page-loader {
   transform: scale(1.05);
   background-color: #401759;
 }
-
 /* ==========================================
    ADAPTACIÓN PARA MÓVILES (PANTALLAS CHICAS)
    ========================================== */
 @media (max-width: 768px) {
     h1 {
-        font-size: 26px !important; /* Título responsivo */
+        font-size: 24px !important; /* Título responsivo */
         padding: 0 15px;
     }
 
-    /* Modificamos el contenedor para cambiar la distribución en móviles */
+    /* Modificamos el contenedor para cambiar la distribución de las flechas en móviles */
     .carousel-container-wrapper {
         position: relative;
-        flex-direction: column; /* Alinea los elementos verticalmente */
+        flex-direction: column; /* Apila los botones abajo de la ventana del carrusel */
         padding-bottom: 75px;  /* Dejamos un espacio abajo reservado para los botones */
         gap: 0;
     }
@@ -436,7 +435,11 @@ body:not(.is-loading) .page-loader {
         right: calc(50% - 60px);
     }
 
+    /* SOLUCIÓN: Reducimos el tamaño de las tarjetas (de 280x420 a 240x360)
+       para que entren holgadamente en el ancho del celular sin cortarse */
     .flip-card {
+        width: 260px;
+        height: 390px;
         margin: 5px auto; /* Centrado perfecto de la tarjeta */
     }
 }

@@ -236,11 +236,14 @@ body:not(.is-loading) .page-loader {
        CARRUSEL SWIPER
    ======================== */
 
-   .swiper-container {
+.swiper-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10px;
+    width: 100%;
+    max-width: 100vw;  
+    box-sizing: border-box;
+    position: relative;
 }
 
 .swiper {
@@ -252,10 +255,13 @@ body:not(.is-loading) .page-loader {
 }
 
 .swiper-slide {
-    width: 100%;
+    width: 280px; /* Forzamos a la diapositiva a medir EXACTAMENTE lo mismo que tu tarjeta */
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .swiper-pagination-bullet-active {
@@ -343,18 +349,24 @@ body:not(.is-loading) .page-loader {
         margin-bottom: 15px;
     }
 
+    /* SOLUCIÓN: Forzamos al Swiper a medir máximo 350px en el celular.
+       Al achicar el contenedor, las flechas absolutas se encajarán 
+       perfectamente al lado de la tarjeta de 280px y el arrastre será preciso. */
     .swiper {
-        height: 470px; /* Ajuste fino de la altura del contenedor en móviles */
+        width: 100%;
+        max-width: 350px;
+        height: 470px; 
+        margin: 0 auto; /* Asegura el centrado en la pantalla */
     }
 
-    /* Hacemos los botones un poco más pequeños y sutiles en móviles */
+    /* Hacemos los botones un poco más pequeños y estilizados en móviles */
     .custom-carousel-btn {
         width: 38px;
         height: 38px;
-        background-color: rgba(47, 16, 66, 0.6); /* Más transparente para no estorbar la vista */
+        background-color: rgba(47, 16, 66, 0.8); 
     }
 
-    /* Los pegamos bien al borde para maximizar el espacio libre del contenido */
+    /* Se posicionan respecto al borde del swiper de 350px, no de toda la pantalla */
     #swiperPrevBtn {
         left: 2px;
     }
